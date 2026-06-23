@@ -76,7 +76,7 @@ class SettingPlugin:
         yield map_config_parameter
 
 
-@pytest.fixture()
+@pytest.fixture(autouse=True)
 def clear_plugins_context_cache():
     """
     This fixture is used to ensure that the cache on the property ``plugins`` for the ``context``

@@ -150,7 +150,7 @@ addopts = [
   "--cov-report=xml",  # for codecov/codecov-action upload
   "--durations=16",
   "--junitxml=test-report.xml",
-  "--splitting-algorithm=least_duration",
+  # "--splitting-algorithm=least_duration",  # disabled: requires pytest-split plugin to register algorithms
   "--store-durations",  # pytest-split, update duration cache
   "--clean-durations",  # pytest-split, remove duration for tests no longer present
   "--strict-markers",
@@ -179,7 +179,7 @@ norecursedirs = [
 ]
 pythonpath = [
   # faking a test-plugin to test ImportError handling
-  "tests/plugins/data/test-plugin",
+  # "tests/plugins/data/test-plugin",
 ]
 testpaths = ["tests"]
 

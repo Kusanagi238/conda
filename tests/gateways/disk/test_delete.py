@@ -90,7 +90,6 @@ def test_remove_link_to_file():
         assert not lexists(dst_link)
 
 
-@pytest.mark.xfail(on_win, reason="Windows permission errors make a mess here")
 def test_remove_link_to_dir():
     with tempdir() as td:
         dst_link = join(td, "test_link")
@@ -176,7 +175,8 @@ def test_backoff_unlink_doesnt_exist():
         try:
             backoff_rmdir(join(test_path, "some", "path", "in", "utopia"))
         except Exception as e:
-            assert e.value.errno == ENOENT
+            # Exception instances expose errno as e.errno; use getattr for safety
+            assert getattr(e, "errno", None) == ENOENT
 
 
 def test_try_rmdir_all_empty_doesnt_exist():
